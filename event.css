@@ -1,0 +1,59 @@
+body {
+	font-size: 18px;
+}
+
+form {
+	margin: 30px;
+	text-align: center;
+}
+
+button {
+	height: 50px;
+	width: 160px;
+	color: white;
+	font-weight: bold;
+	background-color: red;
+	border-radius: 15px;
+	font-size: 14px;
+}
+
+button:HOVER {
+	font-size: 16px;
+	background-color: green;
+}
+
+div {
+	height: 100%;
+}
+
+.divText {
+	width: 57%;
+	text-align: justify;
+	border-right: 1px solid black;
+	padding: 15px;
+	float: left;
+}
+
+.empty {
+	background: transparent;
+}
+
+.allocateYellow {
+	background-color: yellow;
+}
+
+.allocateRed {
+	background-color: red;
+}
+
+.divDiction {
+	width: 35%;
+	padding: 15px;
+	float: right;
+}
+
+div h1 {
+	text-transform: uppercase;
+	font-weight: bold;
+	text-align: center;
+}

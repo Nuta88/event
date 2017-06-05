@@ -2,21 +2,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>IMG</title>
+<title>Translate</title>
 <link rel="stylesheet" href="event.css">
 <script type="text/javascript" src="event.js"></script>
 </head>
-<body>
-<form name="inpuText">
- <p><b>Введите ваш текст:</b></p>
-<textarea rows="10" cols="125" name="text"></textarea>
-<p><button>Подготовить текс</button></p>
-</form>
-	<div class="divText">
-		<h1>text:</h1>
-		<p id="pText">I think-of - and you, usyour hope that we can get to know each other through letters better. If you want I can help you with the Ukrainian or Russian languages. 
+<body id="body">
+	<div id="divInput" class="divInput">
+			<p class="inputText">Введите ваш текст:</p>
+	
+		<textarea id="textarea" placeholder="Здесь должен быть Ваш текст" class="textarea" rows="10" cols="125" name="text"></textarea>
 
-Let me introduce myself. My name is Milena, I'm 16 years old and-we-my live in Cherkasy, it's near Kiev. I'm a pupil of the 10th grade, and I study in a special English class. So I have been learning English for 9 years and I love this language very much. </p>
+			<button id="button">Подготовить текст</button>
+
+	</div>
+	<div id="divText" class="divText">
+		<h1>text:</h1>
+		<p id="pText"></p>
 
 	</div>
 

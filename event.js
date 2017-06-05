@@ -1,19 +1,23 @@
-window.onload = start;
-function start() {
-	prepareArticleForUser();
-};
-
-function prepareArticleForUser() {
-	var text = getText();
-	var divText = document.getElementsByTagName("div")[0];
-	deleteInputedTextElement(divText);
-	divText.innerHTML += convertTextToSpans(text);
-	highlightWordsEvent(divText.getElementsByTagName("span"));
-	clickForMovingWordFromTextToDiction(divText.getElementsByTagName("span"));
+window.onload = function() {
+	document.getElementById("button").onclick = function() {
+		var text = getText();
+		deleteDivInput();
+		var divText = document.getElementById("divText");
+		deleteInputedTextElement(divText);
+		divText.innerHTML += convertTextToSpans(text);
+		highlightWordsEvent(divText.getElementsByTagName("span"));
+		clickForMovingWordFromTextToDiction(divText
+				.getElementsByTagName("span"));
+	};
 };
 
 function getText() {
-	return document.getElementById("pText").innerHTML;
+	return document.getElementById("textarea").value;
+};
+
+function deleteDivInput() {
+	var child = document.getElementById("divInput");
+	document.getElementById("body").removeChild(child);
 };
 
 function convertTextToSpans(text) {
@@ -61,10 +65,18 @@ function moveWordFromTextToDiction(event) {
 function setEventsOfLastDictionSpan(lastSpan) {
 	lastSpan.onmouseover = showAllocate;
 	lastSpan.onmouseout = showEmpty;
-	lastSpan.onclick = showingIdenticalWordsInTheText;
+	lastSpan.onclick = allocateWordsOnText;
+
 };
-function showingIdenticalWordsInTheText(event) {
-	var divText = document.getElementsByTagName("div")[0];
+
+function allocateWordsOnText(event) {
+
+	for ( var i = 0; i < register.allocatedSpans.length; i++) {
+		register.allocatedSpans[i].setAttribute("class", "empty");
+	}
+	register.clearRegister();
+
+	var divText = document.getElementById("divText");
 	var allSpansOfText = divText.getElementsByTagName("span");
 	var wordToSearch = event.target.innerHTML;
 	for ( var i = 0; i < allSpansOfText.length; i++) {
@@ -72,10 +84,22 @@ function showingIdenticalWordsInTheText(event) {
 			var textConvert = convertSpanToTextWithoutSigns(allSpansOfText[i].innerHTML);
 			if (textConvert === wordToSearch) {
 				showAllocateRed(allSpansOfText[i]);
+				register.addToRegister(allSpansOfText[i]);
 			}
 		}
 	}
 };
+
+var register = {
+	allocatedSpans : [],
+	addToRegister : function(span) {
+		this.allocatedSpans.push(span);
+	},
+	clearRegister : function() {
+		this.allocatedSpans = [];
+	}
+};
+
 function convertSpanToTextWithoutSigns(text) {
 	return text.match(/(\w+-)+\w+|[\w']+/gi)[0];
 };

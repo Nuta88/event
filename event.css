@@ -1,10 +1,26 @@
 body {
 	font-size: 18px;
+	background-color: rgba(254, 245, 231, 0.6);
 }
 
-form {
+.divInput {
 	margin: 30px;
 	text-align: center;
+}
+
+.inputText {
+	text-transform: uppercase;
+	font-weight: bold;
+	text-align: center;
+	color: red;
+	text-shadow: 0 0 10px rgba(0,0,0,0.5);
+	font-size: 28px;
+}
+
+.textarea {
+	display: block;
+	margin: auto;
+	margin-top: 20px;
 }
 
 button {
@@ -15,15 +31,14 @@ button {
 	background-color: red;
 	border-radius: 15px;
 	font-size: 14px;
+	display: block;
+	margin: auto;
+	margin-top: 25px;
 }
 
 button:HOVER {
-	font-size: 16px;
+	font-size: 15px;
 	background-color: green;
-}
-
-div {
-	height: 100%;
 }
 
 .divText {
@@ -56,4 +71,5 @@ div h1 {
 	text-transform: uppercase;
 	font-weight: bold;
 	text-align: center;
+	color: red;
 }

@@ -36,9 +36,11 @@ function highlightWordsEvent(spans) {
 		spans[i].onmouseout = showEmpty;
 	}
 };
+
 function showAllocate(event) {
 	event.target.setAttribute("class", "allocateYellow");
 };
+
 function showEmpty(event) {
 	event.target.setAttribute("class", "empty");
 };
@@ -52,6 +54,7 @@ function clickForMovingWordFromTextToDiction(words) {
 		words[i].onclick = moveWordFromTextToDiction;
 	}
 };
+
 function moveWordFromTextToDiction(event) {
 	var innerSpan = event.target.innerHTML;
 	var words = convertSpanToTextWithoutSigns(innerSpan);
@@ -62,6 +65,7 @@ function moveWordFromTextToDiction(event) {
 	pDiction.appendChild(newSpan);
 	pDiction.appendChild(document.createElement("br"));
 };
+
 function setEventsOfLastDictionSpan(lastSpan) {
 	lastSpan.onmouseover = showAllocate;
 	lastSpan.onmouseout = showEmpty;
@@ -70,7 +74,6 @@ function setEventsOfLastDictionSpan(lastSpan) {
 };
 
 function allocateWordsOnText(event) {
-
 	for ( var i = 0; i < register.allocatedSpans.length; i++) {
 		register.allocatedSpans[i].setAttribute("class", "empty");
 	}
@@ -103,4 +106,3 @@ var register = {
 function convertSpanToTextWithoutSigns(text) {
 	return text.match(/(\w+-)+\w+|[\w']+/gi)[0];
 };
-

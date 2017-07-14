@@ -1,6 +1,23 @@
 body {
 	font-size: 18px;
-	background-color: rgba(254, 245, 231, 0.6);
+	background-image: url("alfabet.jpg");
+	background-size: cover;
+}
+
+.box {
+	background-color: black;
+	height: 30px;
+	min-width: 100%;
+	min-height: 100%;
+	position: relative;
+	color: white;
+	font-size: 14px;
+	margin: 0 auto;
+}
+
+.boxSpan {
+	padding: 8px;
+	position: absolute;
 }
 
 .divInput {
@@ -13,14 +30,16 @@ body {
 	font-weight: bold;
 	text-align: center;
 	color: red;
-	text-shadow: 0 0 10px rgba(0,0,0,0.5);
+	text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	font-size: 28px;
+	overflow: scroll;
 }
 
 .textarea {
 	display: block;
 	margin: auto;
 	margin-top: 20px;
+	background-color: rgba(255, 255, 255, 0.6);
 }
 
 button {
@@ -28,7 +47,7 @@ button {
 	width: 160px;
 	color: white;
 	font-weight: bold;
-	background-color: red;
+	background-color: rgb(74, 67, 67);
 	border-radius: 15px;
 	font-size: 14px;
 	display: block;
@@ -37,16 +56,38 @@ button {
 }
 
 button:HOVER {
-	font-size: 15px;
-	background-color: green;
+	font-size: 14.2px;
+	background-color: rgb(38, 30, 30);
 }
 
 .divText {
 	width: 57%;
 	text-align: justify;
-	border-right: 1px solid black;
 	padding: 15px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 	float: left;
+	height: 400px;
+	background-color: rgba(255, 255, 255, 0.6);
+	float: left;
+}
+
+.divDiction {
+	width: 35%;
+	padding: 15px;
+	float: right;
+	height: 400px;
+	background-color: rgba(255, 255, 255, 0.6);
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+div p {
+	overflow: auto;
+	height: 290px;
+	width: 100%;
+	font-size: 18px;
+	margin-top: 20px;
 }
 
 .empty {
@@ -54,22 +95,19 @@ button:HOVER {
 }
 
 .allocateYellow {
-	background-color: yellow;
+	background-color: rgba(255, 215, 0, 0.6);
 }
 
-.allocateRed {
-	background-color: red;
-}
-
-.divDiction {
-	width: 35%;
-	padding: 15px;
-	float: right;
+.allocate {
+	background-color: rgba(0, 0, 0, 0.6);
+	color: white;
 }
 
 div h1 {
 	text-transform: uppercase;
+	font-size: 23px;
 	font-weight: bold;
 	text-align: center;
-	color: red;
+	color: #2E2E2E;
+	margin-bottom: 10px;
 }

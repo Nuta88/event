@@ -7,7 +7,6 @@ window.onload = function() {
 		var button = creatButton();
 		var pText = document.getElementById("pText");
 		pText.innerHTML += convertTextToSpans(text);
-		highlightWordsEvent(pText.getElementsByTagName("span"));
 		clickForMovingWordFromTextToDiction(pText.getElementsByTagName("span"));
 	};
 };
@@ -48,25 +47,6 @@ function convertTextToSpans(text) {
 	return "<span class='empty'>" + text.replace(/\s+/ig, "</span> <span class='empty'>") + "</span>";
 };
 
-function highlightWordsEvent(spans) {
-	for (var i = 0; i < spans.length; i++) {
-		spans[i].onmouseover = showAllocate;
-		spans[i].onmouseout = showEmpty;
-	}
-};
-
-function showAllocate(event) {
-	event.target.setAttribute("class", "allocateYellow");
-};
-
-function showEmpty(event) {
-	event.target.setAttribute("class", "empty");
-};
-
-function showAllocateWord(spanText) {
-	spanText.setAttribute("class", "allocate");
-};
-
 function clickForMovingWordFromTextToDiction(words) {
 	for (var i = 0; i < words.length; i++) {
 		words[i].onclick = moveWordFromTextToDiction;
@@ -85,17 +65,15 @@ function moveWordFromTextToDiction(event) {
 };
 
 function setEventsOfLastDictionSpan(lastSpan) {
-	lastSpan.onmouseover = showAllocate;
-	lastSpan.onmouseout = showEmpty;
-	lastSpan.onclick = allocateWordsOnText;
+	lastSpan.onclick = allocateWords;
 };
 
-function allocateWordsOnText(event) {
-	for (var i = 0; i < register.allocatedSpans.length; i++) {
-		register.allocatedSpans[i].setAttribute("class", "empty");
+function allocateWords(event) {
+	for (var i = 0; i < TextElementRepository.allocatedSpans.length; i++) {
+		TextElementRepository.allocatedSpans[i].setAttribute("class", "empty");
 	}
-	register.clearRegister();
-	allocateWordsOnDiction(event.target);
+	TextElementRepository.clearStorage();
+	allocateWordsOnDictionary(event.target);
 
 	var pText = document.getElementById("pText");
 	var allSpansOfText = pText.getElementsByTagName("span");
@@ -104,43 +82,34 @@ function allocateWordsOnText(event) {
 		if (allSpansOfText[i].innerHTML.search(wordToSearch) != -1) {
 			var textConvert = convertSpanToTextWithoutSigns(allSpansOfText[i].innerHTML);
 			if (textConvert === wordToSearch) {
-				showAllocateWord(allSpansOfText[i]);
-				register.addToRegister(allSpansOfText[i]);
+				allSpansOfText[i].setAttribute("class", "allocate");
+				TextElementRepository.addToStorage(allSpansOfText[i]);
 			}
 		}
 	}
 };
 
-function allocateWordsOnDiction(event) {
-	for (var i = 0; i < registerDiction.allocatedSpans.length; i++) {
-		registerDiction.allocatedSpans[i].setAttribute("class", "empty");
+function allocateWordsOnDictionary(event) {
+	for (var i = 0; i < DictionaryElementRepository.allocatedSpans.length; i++) {
+		DictionaryElementRepository.allocatedSpans[i].setAttribute("class", "empty");
 	}
-	registerDiction.clearRegister();
-	showAllocateWord(event);
-	event.onmouseout = showAllocateWord;
-	event.onmouseover = showAllocateWord;
-	registerDiction.addToRegister(event);
+	DictionaryElementRepository.clearStorage();
+	event.setAttribute("class", "allocate");
+	DictionaryElementRepository.addToStorage(event);
 }
 
-var register = {
-	allocatedSpans : [],
-	addToRegister : function(span) {
-		this.allocatedSpans.push(span);
-	},
-	clearRegister : function() {
-		this.allocatedSpans = [];
-	}
+function ElementStorage() {
+	this.allocatedSpans = [];
+}
+ElementStorage.prototype.addToStorage = function(span) {
+	this.allocatedSpans.push(span);
+};
+ElementStorage.prototype.clearStorage = function() {
+	this.allocatedSpans = [];
 };
 
-var registerDiction = {
-	allocatedSpans : [],
-	addToRegister : function(span) {
-		this.allocatedSpans.push(span);
-	},
-	clearRegister : function() {
-		this.allocatedSpans = [];
-	}
-};
+var DictionaryElementRepository = new ElementStorage();
+var TextElementRepository = new ElementStorage();
 
 function convertSpanToTextWithoutSigns(text) {
 	return text.match(/(\w+-)+\w+|[\w']+/gi)[0];

@@ -90,17 +90,17 @@ div p {
 	margin-top: 20px;
 }
 
-.empty {
-	background: transparent;
-}
-
-.allocateYellow {
+span:not([class="allocate"]):HOVER {
 	background-color: rgba(255, 215, 0, 0.6);
 }
 
 .allocate {
 	background-color: rgba(0, 0, 0, 0.6);
 	color: white;
+}
+
+.empty {
+	background-color: transparent;
 }
 
 div h1 {
